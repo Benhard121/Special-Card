@@ -1,0 +1,2304 @@
+:root {
+    --bg-top: #ffdcea;
+    --bg-bottom: #ffbfd8;
+    --pink-main: #ff7aa2;
+    --pink-light: #ffc9db;
+    --pink-dark: #e05275;
+    --window-bg: #fff6f9;
+    --text-color: #5a4a55;
+
+    --font-display: "Baloo 2", "Comic Sans MS", "Segoe UI", sans-serif;
+    --font-body: "Quicksand", "Segoe UI", Tahoma, Geneva, Verdana, sans-serif;
+}
+
+* {
+    box-sizing: border-box;
+    margin: 0;
+    padding: 0;
+
+    font-family:
+        var(--font-body);
+}
+
+html,
+body {
+    width: 100%;
+    height: 100%;
+}
+
+body {
+    background:
+        linear-gradient(
+            135deg,
+            var(--bg-top),
+            var(--bg-bottom)
+        );
+
+    color: var(--text-color);
+
+    display: flex;
+
+    justify-content: center;
+    align-items: center;
+
+    overflow: hidden;
+
+    position: relative;
+}
+
+
+/* ========================================
+   BACKGROUND PARTICLES
+======================================== */
+
+#particles {
+    position: fixed;
+
+    inset: 0;
+
+    pointer-events: none;
+
+    overflow: hidden;
+}
+
+.particle {
+    position: absolute;
+
+    pointer-events: none;
+
+    animation:
+        floatUp
+        4s
+        linear
+        forwards;
+
+    opacity: 0.6;
+
+    user-select: none;
+}
+
+@keyframes floatUp {
+
+    0% {
+        transform:
+            translateY(100vh)
+            scale(0);
+
+        opacity: 0;
+    }
+
+    50% {
+        opacity: 0.8;
+    }
+
+    100% {
+
+        transform:
+            translateY(-10vh)
+            scale(1);
+
+        opacity: 0;
+    }
+
+}
+
+
+/* ========================================
+   STAGE
+======================================== */
+
+.stage {
+
+    position: relative;
+
+    width: 100%;
+    height: 100%;
+
+    display: none;
+
+    justify-content: center;
+    align-items: center;
+
+    padding: 24px;
+}
+
+.stage.active {
+    display: flex;
+}
+
+
+/* ========================================
+   ENVELOPE
+======================================== */
+
+.envelope-wrapper {
+
+    display: flex;
+
+    flex-direction: column;
+
+    align-items: center;
+
+    cursor: pointer;
+
+    transition:
+        transform
+        0.3s
+        ease;
+
+    user-select: none;
+}
+
+.envelope-wrapper:hover {
+
+    transform:
+        scale(1.05);
+}
+
+.envelope-text {
+
+    margin-bottom: 15px;
+
+    font-size: 1.2rem;
+
+    color:
+        var(--pink-dark);
+
+    font-family:
+        var(--font-display);
+
+    font-weight: 700;
+
+    background:
+        linear-gradient(
+            135deg,
+            #fff,
+            #ffe4ef
+        );
+
+    padding:
+        10px 24px;
+
+    border-radius:
+        999px;
+
+    box-shadow:
+        0 6px 14px
+        rgba(
+            255,
+            122,
+            162,
+            0.15
+        );
+
+    animation:
+        bob
+        2.6s
+        ease-in-out
+        infinite;
+}
+
+.envelope {
+
+    position: relative;
+
+    width: 280px;
+
+    height: 180px;
+
+    background:
+        linear-gradient(
+            135deg,
+            #ffd2e3,
+            var(--pink-light)
+        );
+
+    border-radius:
+        0 0 14px 14px;
+
+    box-shadow:
+        0 10px 30px
+        rgba(
+            0,
+            0,
+            0,
+            0.10
+        );
+
+    overflow: hidden;
+
+    animation:
+        breathe
+        3s
+        ease-in-out
+        infinite;
+}
+
+
+/* BADAN AMPL0P */
+
+.envelope-body {
+
+    position: absolute;
+
+    left: 0;
+    right: 0;
+    bottom: 0;
+
+    width: 100%;
+    height: 100%;
+
+    background:
+        var(--pink-light);
+
+    z-index: 1;
+}
+
+
+/* LIPATAN KIRI */
+
+.envelope-body::before {
+
+    content: "";
+
+    position: absolute;
+
+    bottom: 0;
+    left: 0;
+
+    width: 50%;
+    height: 70%;
+
+    background:
+        #f7aabd;
+
+    clip-path:
+        polygon(
+            0 0,
+            100% 100%,
+            0 100%
+        );
+}
+
+
+/* LIPATAN KANAN */
+
+.envelope-body::after {
+
+    content: "";
+
+    position: absolute;
+
+    bottom: 0;
+    right: 0;
+
+    width: 50%;
+    height: 70%;
+
+    background:
+        #f7aabd;
+
+    clip-path:
+        polygon(
+            100% 0,
+            100% 100%,
+            0 100%
+        );
+}
+
+
+/* BAGIAN ATAS AMPL0P */
+
+.envelope-flap {
+
+    position: absolute;
+
+    top: -2px;
+    left: 0;
+
+    width: 0;
+    height: 0;
+
+    border-left:
+        140px solid transparent;
+
+    border-right:
+        140px solid transparent;
+
+    border-top:
+        95px solid #f8a6b9;
+
+    z-index: 3;
+
+    transform-origin:
+        top center;
+
+    transition:
+        transform
+        0.6s ease;
+}
+
+
+/* HEART */
+
+.heart {
+
+    position: absolute;
+
+    left: 50%;
+    top: 50%;
+
+    transform:
+        translate(
+            -50%,
+            -40%
+        );
+
+    z-index: 4;
+
+    animation:
+        heartBeat
+        1.6s
+        ease-in-out
+        infinite;
+
+    color: white;
+
+    font-size: 42px;
+
+    text-shadow:
+        0 4px 10px
+        rgba(
+            0,
+            0,
+            0,
+            0.12
+        );
+}
+
+
+/* ========================================
+   LETTER
+======================================== */
+
+.letter-card {
+
+    position: relative;
+
+    width:
+        min(
+            680px,
+            94vw
+        );
+
+    min-height: 360px;
+
+    max-height: 85vh;
+
+    overflow: auto;
+
+    padding:
+        46px 34px 32px;
+
+    border-radius:
+        28px;
+
+    background:
+        var(--window-bg);
+
+    box-shadow:
+        0 22px 60px
+        rgba(
+            74,
+            74,
+            74,
+            0.15
+        );
+
+    text-align: center;
+
+    animation:
+        popIn
+        0.65s
+        ease
+        both;
+}
+
+@keyframes popIn {
+
+    from {
+
+        transform:
+            scale(0.8)
+            translateY(20px);
+
+        opacity: 0;
+    }
+
+    to {
+
+        transform:
+            scale(1)
+            translateY(0);
+
+        opacity: 1;
+    }
+}
+
+.letter-icon {
+
+    font-size: 46px;
+
+    margin-bottom: 8px;
+
+    animation:
+        floatHeart
+        2.4s
+        ease-in-out
+        infinite;
+}
+
+.letter-card h1 {
+
+    color:
+        var(--pink-dark);
+
+    font-family:
+        var(--font-display);
+
+    font-size:
+        clamp(
+            1.9rem,
+            4vw,
+            2.7rem
+        );
+
+    margin-bottom: 26px;
+}
+
+/* Titre degrade (lebih cute) di browser yang support */
+@supports (-webkit-background-clip: text) or (background-clip: text) {
+
+    .letter-card h1 {
+
+        background:
+            linear-gradient(
+                90deg,
+                #ff6f9e,
+                #ef5b88,
+                #ff6f9e
+            );
+
+        -webkit-background-clip: text;
+        background-clip: text;
+
+        color: transparent;
+    }
+}
+
+.message {
+
+    min-height: 120px;
+
+    white-space: pre-line;
+
+    line-height: 1.8;
+
+    font-size: 1.05rem;
+
+    color:
+        var(--text-color);
+}
+
+.signature {
+
+    margin-top: 24px;
+
+    color:
+        var(--pink-dark);
+
+    font-style: italic;
+}
+
+
+/* BUTTON */
+
+.replay-btn {
+
+    margin-top: 26px;
+
+    border: none;
+
+    border-radius:
+        999px;
+
+    padding:
+        11px 20px;
+
+    background:
+        linear-gradient(
+            135deg,
+            var(--pink-main),
+            var(--pink-dark)
+        );
+
+    color: white;
+
+    font-size: 0.98rem;
+
+    font-weight: 700;
+
+    cursor: pointer;
+
+    transition:
+        transform
+        0.2s ease,
+        background
+        0.2s ease;
+}
+
+.replay-btn:hover {
+
+    transform:
+        translateY(-3px)
+        scale(1.05);
+
+    background:
+        linear-gradient(
+            135deg,
+            var(--pink-main),
+            var(--pink-dark)
+        );
+
+    box-shadow:
+        0 10px 22px
+        rgba(
+            255,
+            122,
+            162,
+            0.35
+        );
+}
+
+.replay-btn:active,
+.close-btn:active {
+
+    transform: scale(0.94);
+}
+
+
+/* CLOSE */
+
+.close-btn {
+
+    position: absolute;
+
+    top: 14px;
+    right: 16px;
+
+    border: none;
+
+    background:
+        transparent;
+
+    color:
+        var(--pink-dark);
+
+    font-size: 2rem;
+
+    line-height: 1;
+
+    cursor: pointer;
+}
+
+
+/* ========================================
+   MOBILE
+======================================== */
+
+@media (max-width: 480px) {
+
+    .envelope {
+
+        width: 240px;
+
+        height: 155px;
+    }
+
+    .envelope-flap {
+
+        border-left-width:
+            120px;
+
+        border-right-width:
+            120px;
+
+        border-top-width:
+            82px;
+    }
+
+    .envelope-text {
+
+        font-size: 1rem;
+    }
+
+    .letter-card {
+
+        padding:
+            42px 22px 26px;
+    }
+
+}
+/* ========================================
+   TOUCHES LUCU EXTRA ✨
+======================================== */
+
+/* Glowing soft blush behind everything */
+body::before {
+    content: "";
+    position: fixed;
+    inset: 0;
+    background:
+        radial-gradient(circle at 18% 22%, rgba(255, 214, 235, 0.5), transparent 45%),
+        radial-gradient(circle at 82% 74%, rgba(255, 188, 214, 0.42), transparent 50%);
+    pointer-events: none;
+    z-index: 0;
+}
+
+/* Cute bob for the pill */
+@keyframes bob {
+    0%, 100% { transform: translateY(0); }
+    50%      { transform: translateY(-6px); }
+}
+
+/* Breathing shadow under the envelope */
+@keyframes breathe {
+    0%, 100% { box-shadow: 0 10px 26px rgba(0, 0, 0, 0.10); }
+    50%      { box-shadow: 0 16px 34px rgba(0, 0, 0, 0.16); }
+}
+
+/* Heartbeat */
+@keyframes heartBeat {
+    0%, 100% { transform: translate(-50%, -40%) scale(1); }
+    12%      { transform: translate(-50%, -40%) scale(1.18); }
+    24%      { transform: translate(-50%, -40%) scale(0.95); }
+    36%      { transform: translate(-50%, -40%) scale(1.12); }
+}
+
+/* Floating heart on the letter */
+@keyframes floatHeart {
+    0%, 100% { transform: translateY(0) scale(1); }
+    50%      { transform: translateY(-7px) scale(1.1); }
+}
+
+/* Wax seal pulse */
+@keyframes sealPulse {
+    0%, 100% { transform: translateX(-50%) scale(1); }
+    50%      { transform: translateX(-50%) scale(1.08); }
+}
+
+/* Wax seal sitting on the flap */
+.wax-seal {
+    position: absolute;
+    top: 6px;
+    left: 50%;
+    width: 46px;
+    height: 46px;
+    border-radius: 50%;
+    background:
+        radial-gradient(circle at 35% 32%, #ff77a4, #ef5b88 62%, #cf4a6f);
+    box-shadow:
+        0 5px 14px rgba(199, 68, 104, 0.35),
+        inset 0 -3px 6px rgba(120, 30, 60, 0.18);
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    color: #fff;
+    font-size: 22px;
+    line-height: 1;
+    z-index: 6;
+    animation: sealPulse 3s ease-in-out infinite;
+}
+
+/* Button depth + focus rings for keyboard users */
+.replay-btn {
+    box-shadow: 0 8px 18px rgba(255, 122, 162, 0.25);
+}
+
+.close-btn {
+    transition: transform 0.2s ease, color 0.2s ease;
+}
+
+.close-btn:hover {
+    color: #d33f64;
+    transform: rotate(90deg);
+}
+
+.replay-btn:focus-visible,
+.close-btn:focus-visible,
+.envelope-wrapper:focus-visible {
+    outline: 3px solid var(--pink-main);
+    outline-offset: 3px;
+}
+
+.message {
+    font-size: 1.08rem;
+}
+/* ========================================
+   EFEKTA "WAW" ✨✨
+======================================== */
+
+/* Garlands de luces */
+#bunting {
+    position: fixed;
+    top: 0;
+    left: 0;
+    right: 0;
+    display: flex;
+    justify-content: space-around;
+    pointer-events: none;
+    z-index: 5;
+}
+
+.bulb {
+    width: 2px;
+    height: 24px;
+    background: rgba(255, 216, 235, 0.55);
+    transform-origin: 50% 0;
+    animation: sway 3.4s ease-in-out infinite;
+}
+
+.bulb::after {
+    content: "";
+    position: absolute;
+    left: 50%;
+    top: 100%;
+    transform: translate(-50%, -2px);
+    width: 14px;
+    height: 18px;
+    border-radius: 60% 60% 45% 45%;
+    background: radial-gradient(circle at 50% 30%, #fff, #ffdcae 40%, rgba(255, 150, 90, 0.95));
+    box-shadow: 0 0 14px rgba(255, 185, 120, 0.85);
+}
+
+@keyframes sway {
+    0%, 100% { transform: rotate(-7deg); }
+    50%      { transform: rotate(7deg); }
+}
+
+/* Kaca shine i hun amplop */
+.envelope::after {
+    content: "";
+    position: absolute;
+    top: 0;
+    left: 0;
+    width: 90px;
+    height: 100%;
+    background: linear-gradient(115deg, rgba(255,255,255,0), rgba(255,255,255,0.5), rgba(255,255,255,0));
+    z-index: 5;
+    pointer-events: none;
+    animation: sheen 3.6s ease-in-out infinite;
+}
+
+@keyframes sheen {
+    0%, 100% { transform: translateX(-40px); opacity: 0; }
+    12%      { opacity: 1; }
+    55%      { transform: translateX(250px); opacity: 1; }
+    68%      { opacity: 0; }
+}
+
+/* Confetti burst */
+.confetti {
+    position: absolute;
+    left: 50%;
+    top: 50%;
+    width: 9px;
+    height: 14px;
+    animation: confettiBurst 1.4s ease-out forwards;
+}
+
+@keyframes confettiBurst {
+    0%   { opacity: 0; transform: translate(-50%, -50%) rotate(0) scale(0.3); }
+    8%   { opacity: 1; transform: translate(-50%, -50%) rotate(0) scale(1); }
+    100% { opacity: 0; transform: translate(calc(-50% + var(--dx)), calc(-50% + var(--dy))) rotate(var(--rot)) scale(0.9); }
+}
+
+/* Sparkle trail sa mouse */
+.sparkle {
+    position: absolute;
+    pointer-events: none;
+    color: #ffd9b0;
+    text-shadow: 0 0 8px rgba(255, 190, 120, 0.9), 0 0 16px rgba(255, 120, 170, 0.6);
+    animation: sparkleFade 0.9s ease-out forwards;
+}
+
+@keyframes sparkleFade {
+    0%   { opacity: 0; transform: scale(0.3); }
+    15%  { opacity: 1; transform: scale(1.15); }
+    100% { opacity: 0; transform: scale(0.4) translateY(-20px); }
+}
+
+/* Rainbow button halakar */
+.replay-btn {
+    background: linear-gradient(90deg, #ff9ecb, #ffb86b, #ffd166, #a9e8a0, #7fd8f0, #c58bff, #ff9ecb);
+    background-size: 180% 100%;
+    animation: rainbowShift 3s linear infinite;
+}
+
+.replay-btn:hover {
+    background: linear-gradient(90deg, #ff9ecb, #ffb86b, #ffd166, #a9e8a0, #7fd8f0, #c58bff, #ff9ecb);
+    animation-duration: 0.9s;
+}
+
+@keyframes rainbowShift {
+    0%   { background-position: 0% 50%; }
+    100% { background-position: 180% 50%; }
+}
+
+/* ==================================================
+   HALAMAN BONEKA (SURPRISE)
+================================================== */
+
+.surprise-card {
+    width: min(520px, 92vw);
+    border-radius: 30px;
+    background: linear-gradient(160deg, #ffffff, #ffe4ef);
+    box-shadow: 0 24px 60px rgba(74, 74, 74, 0.15);
+    text-align: center;
+    padding: 40px 30px 30px;
+    animation: popIn 0.65s ease both;
+}
+
+.surprise {
+    position: relative;
+    height: 240px;
+    margin-bottom: 10px;
+}
+
+.surprise-heart {
+    position: absolute;
+    font-size: 26px;
+    animation: heartPop 2.6s ease-in-out infinite;
+}
+
+.surprise-heart.h1 {
+    top: 6%;
+    left: 14%;
+    animation-delay: 0s;
+}
+
+.surprise-heart.h2 {
+    top: 14%;
+    right: 12%;
+    animation-delay: 0.6s;
+}
+
+.surprise-heart.h3 {
+    bottom: 10%;
+    left: 20%;
+    animation-delay: 1.2s;
+}
+
+.surprise-heart.h4 {
+    bottom: 4%;
+    right: 18%;
+    animation-delay: 1.8s;
+}
+
+@keyframes heartPop {
+    0%, 100% {
+        transform: scale(0.5);
+        opacity: 0.3;
+    }
+    50% {
+        transform: scale(1.3) translateY(-10px);
+        opacity: 1;
+    }
+}
+
+.boneka-wrap {
+    position: absolute;
+    left: 50%;
+    top: 56%;
+    transform: translate(-50%, -50%);
+    width: 190px;
+    height: 200px;
+}
+
+.halo {
+    position: absolute;
+    inset: -14px;
+    border-radius: 50%;
+    background: radial-gradient(
+        circle,
+        rgba(255, 170, 210, 0.4),
+        rgba(255, 170, 210, 0) 70%
+    );
+    animation: haloPulse 2.4s ease-in-out infinite;
+}
+
+.boneka {
+    position: absolute;
+    left: 50%;
+    top: 50%;
+    transform: translate(-50%, -50%);
+    font-size: 150px;
+    line-height: 1;
+    animation: bearDance 2.4s ease-in-out infinite;
+    filter: drop-shadow(0 12px 20px rgba(0, 0, 0, 0.18));
+}
+
+.bow {
+    position: absolute;
+    top: -6px;
+    left: 50%;
+    transform: translate(-50%, 0) rotate(-10deg);
+    font-size: 30px;
+    z-index: 3;
+    animation: bowSway 2.4s ease-in-out infinite;
+}
+
+@keyframes bearDance {
+    0%, 100% {
+        transform: translate(-50%, -50%) rotate(-8deg) scale(1);
+    }
+    25% {
+        transform: translate(-50%, -50%) rotate(0deg) translateY(-14px);
+    }
+    50% {
+        transform: translate(-50%, -50%) rotate(8deg) scale(1.06);
+    }
+    75% {
+        transform: translate(-50%, -50%) rotate(-4deg) translateY(-8px);
+    }
+}
+
+@keyframes bowSway {
+    0%, 100% {
+        transform: translate(-50%, 0) rotate(-16deg);
+    }
+    50% {
+        transform: translate(-50%, 0) rotate(10deg);
+    }
+}
+
+@keyframes haloPulse {
+    0%, 100% {
+        transform: scale(1);
+        opacity: 0.5;
+    }
+    50% {
+        transform: scale(1.22);
+        opacity: 0.9;
+    }
+}
+
+.surprise-title {
+    font-family: var(--font-display);
+    color: var(--pink-dark);
+    font-size: clamp(1.6rem, 4vw, 2.4rem);
+    margin-bottom: 16px;
+    text-shadow: 0 0 14px rgba(255, 122, 162, 0.35);
+}
+
+.surprise-card .message {
+    color: var(--text-color);
+    line-height: 1.8;
+}
+
+.surprise-card .replay-btn {
+    margin-top: 24px;
+}
+
+/* ==================================================
+   TOMBOL MUSIK 🎵
+================================================== */
+
+.music-btn {
+    margin-top: 14px;
+    padding: 10px 20px;
+    border: none;
+    border-radius: 999px;
+    background: linear-gradient(135deg, #ffb3c6, #ff7aa2);
+    color: #fff;
+    font-family: var(--font-ui, "Quicksand"), sans-serif;
+    font-weight: 700;
+    font-size: 1rem;
+    cursor: pointer;
+    box-shadow: 0 8px 18px rgba(255, 122, 162, 0.4);
+    transition: transform 0.2s ease, box-shadow 0.2s ease;
+}
+
+.music-btn:hover {
+    transform: translateY(-2px);
+    box-shadow: 0 12px 24px rgba(255, 122, 162, 0.5);
+}
+
+.music-btn:active {
+    transform: translateY(0);
+}
+
+.music-btn.playing {
+    background: linear-gradient(135deg, #ff7aa2, #ff4f7d);
+    box-shadow: 0 8px 20px rgba(255, 79, 125, 0.5);
+}
+
+.music-btn.playing::before {
+    content: "♪♪ ";
+}
+
+
+/* ==================================================
+   HIASAN EXTRA (waw) 
+================================================== */
+
+.stage {
+    z-index: 1;
+}
+
+.ambient {
+    position: fixed;
+    inset: 0;
+    z-index: 0;
+    pointer-events: none;
+    background:
+        radial-gradient(620px 620px at 14% 18%, rgba(255, 170, 205, 0.20), transparent 62%),
+        radial-gradient(720px 720px at 86% 82%, rgba(255, 205, 150, 0.18), transparent 62%),
+        radial-gradient(520px 520px at 76% 12%, rgba(201, 228, 255, 0.16), transparent 62%);
+    animation: ambientDrift 14s ease-in-out infinite;
+}
+
+@keyframes ambientDrift {
+    0%, 100% { transform: translate(0, 0) scale(1); }
+    50%      { transform: translate(14px, -18px) scale(1.05); }
+}
+
+/* --- BALON NAIK (halaman amplop) --- */
+.balloons {
+    position: absolute;
+    inset: 0;
+    pointer-events: none;
+    overflow: hidden;
+}
+
+.balloon {
+    position: absolute;
+    bottom: -50px;
+    font-size: 42px;
+    animation: balloonFloat 8s ease-in-out infinite;
+    filter: drop-shadow(0 6px 10px rgba(0, 0, 0, 0.12));
+}
+
+.balloon.b1 {
+    left: 6%;
+    animation-delay: 0s;
+    font-size: 46px;
+}
+
+.balloon.b2 {
+    left: auto;
+    right: 7%;
+    animation-delay: 2.6s;
+    font-size: 36px;
+}
+
+.balloon.b3 {
+    left: 19%;
+    bottom: -90px;
+    animation-delay: 5s;
+    font-size: 30px;
+}
+
+@keyframes balloonFloat {
+    0%   { transform: translateY(0) rotate(-5deg);     opacity: 0; }
+    12%  { opacity: 0.9; }
+    50%  { transform: translateY(-46vh) rotate(7deg); }
+    100% { transform: translateY(-96vh) rotate(-5deg); opacity: 0; }
+}
+
+/* --- GLOW DI BELAKANG AMPLOP --- */
+.envelope-wrapper {
+    animation: envelopeGlow 2.8s ease-in-out infinite;
+}
+
+@keyframes envelopeGlow {
+    0%, 100% { filter: drop-shadow(0 16px 34px rgba(255, 122, 162, 0.25)); }
+    50%      { filter: drop-shadow(0 22px 44px rgba(255, 122, 162, 0.45)); }
+}
+
+/* --- SPARKLE DI JUDUL --- */
+.letter-card h1,
+.surprise-title {
+    animation: titleShine 3s ease-in-out infinite;
+}
+
+@keyframes titleShine {
+    0%, 100% { text-shadow: 0 0 6px rgba(255, 111, 158, 0.3); }
+    50%      { text-shadow: 0 0 18px rgba(255, 160, 190, 0.75); }
+}
+
+/* --- BUNGA DI SUDUT KARTU --- */
+.card-flower {
+    position: absolute;
+    font-size: 26px;
+    pointer-events: none;
+    animation: flowerSway 3.2s ease-in-out infinite;
+}
+
+.card-flower.tl {
+    top: 4px;
+    left: 8px;
+}
+
+.card-flower.br {
+    bottom: 6px;
+    right: 8px;
+    animation-delay: 1.4s;
+}
+
+@keyframes flowerSway {
+    0%, 100% { transform: rotate(-12deg) scale(1); }
+    50%      { transform: rotate(10deg) scale(1.12); }
+}
+
+/* --- SPARKLE EXTRA DI KARTU BONEKA --- */
+.card-sparkle {
+    position: absolute;
+    font-size: 20px;
+    color: #ff9ecb;
+    pointer-events: none;
+    animation: sparkleTwinkle 2.2s ease-in-out infinite;
+}
+
+.card-sparkle.s1 {
+    top: 30%;
+    left: 2%;
+}
+
+.card-sparkle.s2 {
+    top: 64%;
+    right: 2%;
+    animation-delay: 1.1s;
+}
+
+@keyframes sparkleTwinkle {
+    0%, 100% { opacity: 0.2; transform: scale(0.7) rotate(0deg); }
+    50%      { opacity: 1;   transform: scale(1.25) rotate(180deg); }
+}
+
+/* --- RESPONSIVE: sembunyikan hiasan di layar kecil --- */
+@media (max-width: 520px) {
+    .balloon.b3,
+    .card-flower {
+        display: none;
+    }
+}
+
+/* ==================================================
+   TOMBOL MUSIK 🎵 (notice, pojok-kanan-bawah)
+================================================== */
+
+.music-toggle {
+    position: fixed;
+    right: 16px;
+    bottom: 16px;
+    z-index: 80;
+    width: 46px;
+    height: 46px;
+    border-radius: 50%;
+    border: 2px solid rgba(255, 255, 255, 0.65);
+    background: rgba(255, 170, 205, 0.78);
+    backdrop-filter: blur(4px);
+    color: #fff;
+    font-size: 20px;
+    line-height: 1;
+    cursor: pointer;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    box-shadow: 0 6px 16px rgba(255, 122, 162, 0.5);
+    transition: transform 0.2s ease, background 0.2s ease;
+}
+
+.music-toggle:hover {
+    transform: scale(1.12) rotate(8deg);
+}
+
+.music-toggle.playing {
+    background: rgba(255, 79, 125, 0.85);
+    animation: musicSpin 3s linear infinite;
+}
+
+@keyframes musicSpin {
+    from { transform: rotate(0deg); }
+    to   { transform: rotate(360deg); }
+}
+
+
+/* ==================================================
+   HALAMAN 3 — BONEKA DI PERBANYAK + HADIAH ISTIMEWA
+================================================== */
+
+/* Bingkai emas "hadiah istimewa" */
+.surprise-card {
+    border: 3px solid rgba(255, 190, 120, 0.55);
+    box-shadow:
+        0 0 0 6px rgba(255, 255, 255, 0.55),
+        0 24px 60px rgba(74, 74, 74, 0.14),
+        0 0 40px rgba(255, 180, 120, 0.5);
+}
+
+.gift-label {
+    display: inline-block;
+    margin-bottom: 16px;
+    padding: 8px 20px;
+    border-radius: 999px;
+    background: linear-gradient(135deg, #ffd76a, #ffb35c);
+    color: #7a4a00;
+    font-family: var(--font-display);
+    font-weight: 800;
+    font-size: 1rem;
+    letter-spacing: 1px;
+    box-shadow: 0 8px 20px rgba(255, 170, 80, 0.45);
+    animation: giftLabelPop 2.4s ease-in-out infinite;
+}
+
+@keyframes giftLabelPop {
+    0%, 100% { transform: scale(1) rotate(-2deg); }
+    50%      { transform: scale(1.06) rotate(2deg); }
+}
+
+/* Tiga boneka: b1 besar di tengah, b2 & b3 kecil di samping */
+.boneka { z-index: 2; }
+
+.boneka.b1 {
+    font-size: 165px;
+    animation: bearDance 2.4s ease-in-out infinite;
+}
+
+.boneka.b2 {
+    left: 4%;
+    top: 84%;
+    font-size: 96px;
+    animation: bearDance 2.8s ease-in-out infinite;
+    animation-delay: 0.5s;
+}
+
+.boneka.b3 {
+    left: 86%;
+    top: 84%;
+    font-size: 96px;
+    animation: bearDance 2.8s ease-in-out infinite;
+    animation-delay: 1s;
+}
+
+/* Kotak hadiah 🎁 yang mengambang */
+.gift {
+    position: absolute;
+    left: 50%;
+    top: 96%;
+    transform: translate(-50%, -50%);
+    font-size: 52px;
+    z-index: 3;
+    animation: giftBob 2.2s ease-in-out infinite;
+    filter: drop-shadow(0 8px 12px rgba(0, 0, 0, 0.18));
+}
+
+@keyframes giftBob {
+    0%, 100% { transform: translate(-50%, -50%) scale(1) rotate(-6deg); }
+    50%      { transform: translate(-50%, -50%) scale(1.1) rotate(6deg); }
+}
+
+/* Bintang/emas di sekitar hadiah */
+.surprise-star {
+    position: absolute;
+    font-size: 24px;
+    pointer-events: none;
+    animation: starTwinkle 2s ease-in-out infinite;
+}
+
+.surprise-star.s1 {
+    top: 2%;
+    left: 38%;
+    color: #ffd76a;
+}
+
+.surprise-star.s2 {
+    top: 70%;
+    right: 8%;
+    color: #ff7aa2;
+    animation-delay: 0.6s;
+}
+
+.surprise-star.s3 {
+    top: 8%;
+    right: 30%;
+    color: #fff0b5;
+    animation-delay: 1.1s;
+}
+
+@keyframes starTwinkle {
+    0%, 100% { opacity: 0.2; transform: scale(0.7) rotate(0deg); }
+    50%      { opacity: 1;   transform: scale(1.3) rotate(180deg); }
+}
+
+
+/* ==================================================
+   RAPIKAN + BORDER DEKORATIF & BACKGROUND TIDAK KOSONG
+================================================== */
+
+/* --- background: pola titik + cahaya lembut (biar tak kosong) --- */
+body {
+    position: relative;
+}
+
+body::before {
+    content: "";
+    position: fixed;
+    inset: 0;
+    z-index: 0;
+    pointer-events: none;
+    background-image:
+        radial-gradient(circle, rgba(255, 255, 255, 0.32) 2.2px, transparent 2.6px),
+        radial-gradient(circle, rgba(255, 255, 255, 0.18) 1.4px, transparent 1.8px);
+    background-size: 46px 46px, 23px 23px;
+    background-position: 0 0, 11px 11px;
+}
+
+body::after {
+    content: "";
+    position: fixed;
+    inset: 0;
+    z-index: 0;
+    pointer-events: none;
+    background:
+        radial-gradient(circle at 10% 16%, rgba(255, 255, 255, 0.55), transparent 38%),
+        radial-gradient(circle at 90% 22%, rgba(255, 186, 214, 0.5), transparent 42%),
+        radial-gradient(circle at 50% 96%, rgba(255, 255, 255, 0.45), transparent 46%);
+}
+
+/* --- bingkai dekoratif sekeliling viewport --- */
+.page-frame {
+    position: fixed;
+    inset: 14px;
+    z-index: 6;
+    pointer-events: none;
+    border: 3px solid rgba(255, 255, 255, 0.4);
+    border-radius: 26px;
+    outline: 2px dashed rgba(255, 255, 255, 0.35);
+    outline-offset: 6px;
+    box-shadow:
+        inset 0 0 24px rgba(255, 255, 255, 0.18),
+        0 0 30px rgba(255, 150, 190, 0.12);
+}
+
+/* --- border berlapis pada kartu surat & kartu kejutan --- */
+.letter-card {
+    border: 2.5px solid rgba(255, 150, 200, 0.55);
+    outline: 2px dashed rgba(255, 195, 220, 0.65);
+    outline-offset: 6px;
+}
+
+.surprise-card {
+    outline: 2px dashed rgba(255, 205, 160, 0.65);
+    outline-offset: 6px;
+}
+
+/* --- lingkar border pada amplop biar terpusat & rapi --- */
+.envelope-wrapper {
+    position: relative;
+}
+
+.envelope-wrapper::before {
+    content: "";
+    position: absolute;
+    left: 50%;
+    top: 50%;
+    transform: translate(-50%, -50%);
+    width: min(88vw, 390px);
+    aspect-ratio: 1 / 1;
+    border: 3px dashed rgba(255, 255, 255, 0.5);
+    border-radius: 50%;
+    pointer-events: none;
+}
+
+.envelope-wrapper::after {
+    content: "";
+    position: absolute;
+    left: 50%;
+    top: 50%;
+    transform: translate(-50%, -50%);
+    width: min(80vw, 340px);
+    aspect-ratio: 1 / 1;
+    border: 1.5px solid rgba(255, 255, 255, 0.35);
+    border-radius: 50%;
+    pointer-events: none;
+}
+
+/* --- pojok hiasan kecil pada kartu (terpusat & rapi) --- */
+.stage {
+    padding: 20px;
+}
+
+
+/* ==================================================
+   HIASAN DI PERBANYAK + BACKGROUND BIAR TIDAK KOSONG
+================================================== */
+
+/* background: tambah bercak cahaya hangat biar tak sepi */
+body::after {
+    background:
+        radial-gradient(circle at 8% 14%, rgba(255, 255, 255, 0.55), transparent 34%),
+        radial-gradient(circle at 92% 20%, rgba(255, 196, 120, 0.3), transparent 38%),
+        radial-gradient(circle at 6% 82%, rgba(255, 186, 214, 0.45), transparent 40%),
+        radial-gradient(circle at 94% 80%, rgba(255, 235, 170, 0.28), transparent 42%),
+        radial-gradient(circle at 50% 46%, rgba(255, 255, 255, 0.42), transparent 55%);
+}
+
+/* hiasan emoji mengambang di tepi viewport */
+.bg-deco {
+    position: fixed;
+    inset: 0;
+    z-index: 1;
+    pointer-events: none;
+}
+
+.bg-deco span {
+    position: absolute;
+    opacity: 0.55;
+    filter: drop-shadow(0 6px 10px rgba(0, 0, 0, 0.08));
+    animation: decoFloat 5s ease-in-out infinite;
+}
+
+.bg-deco .bd1 { top: 6%;   left: 6%;   font-size: 34px; }
+.bg-deco .bd2 { top: 16%;  right: 8%;  font-size: 26px; animation-delay: 0.8s; }
+.bg-deco .bd3 { top: 46%;  left: 4%;   font-size: 22px; animation-delay: 1.4s; }
+.bg-deco .bd4 { bottom: 10%; right: 6%; font-size: 32px; animation-delay: 0.4s; }
+.bg-deco .bd5 { bottom: 20%; left: 9%; font-size: 28px; animation-delay: 2s; }
+.bg-deco .bd6 { top: 52%;  right: 4%;  font-size: 24px; animation-delay: 1.8s; }
+
+@keyframes decoFloat {
+    0%, 100% { transform: translateY(0) rotate(-10deg); }
+    50%      { transform: translateY(-16px) rotate(10deg); }
+}
+
+/* hiasan ekstra di dalam adegan boneka */
+.surprise-heart.h5 { top: 2%;   left: 47%; font-size: 22px; animation-delay: 0.3s; }
+.surprise-heart.h6 { bottom: 26%; left: 5%; font-size: 20px; animation-delay: 2s; }
+
+/* hiasan pojok kartu kejutan */
+.surprise-card { position: relative; }
+
+.card-deco {
+    position: absolute;
+    font-size: 30px;
+    opacity: 0.9;
+    pointer-events: none;
+    animation: cardDecoBob 3s ease-in-out infinite;
+}
+
+.card-deco.d1 {
+    top: -16px;
+    left: -14px;
+    font-size: 36px;
+}
+
+.card-deco.d2 {
+    bottom: -14px;
+    right: -10px;
+    font-size: 28px;
+    animation-delay: 1.2s;
+}
+
+@keyframes cardDecoBob {
+    0%, 100% { transform: rotate(-12deg) scale(1); }
+    50%      { transform: rotate(12deg)  scale(1.15); }
+}
+
+/* di layar kecil, sembunyikan sebagian hiasan tepi biar tetap rapi */
+@media (max-width: 520px) {
+    .bg-deco .bd2,
+    .bg-deco .bd3,
+    .bg-deco .bd6 {
+        display: none;
+    }
+}
+
+
+/* ==================================================
+   PAGE 4 — KADO BUNGA + FOTO ARA (tombol 🎁)
+================================================== */
+
+/* 🎁 jadi tombol */
+.gift {
+    cursor: pointer;
+}
+
+.gift:focus-visible {
+    outline: 3px dashed var(--pink-main);
+    outline-offset: 4px;
+    border-radius: 14px;
+}
+
+.gift-hint {
+    position: absolute;
+    left: 50%;
+    top: 116%;
+    transform: translateX(-50%);
+    font-size: 15px;
+    background: linear-gradient(135deg, #ffd76a, #ff9ecb);
+    color: #7a3050;
+    padding: 6px 14px;
+    border-radius: 999px;
+    font-family: var(--font-display);
+    font-weight: 700;
+    white-space: nowrap;
+    box-shadow: 0 6px 14px rgba(255, 150, 120, 0.4);
+    animation: giftHintPulse 2s ease-in-out infinite;
+    z-index: 4;
+}
+
+@keyframes giftHintPulse {
+    0%, 100% { transform: translateX(-50%) scale(1); }
+    50%      { transform: translateX(-50%) scale(1.08); }
+}
+
+/* --- kartu kado --- */
+.gift-card {
+    position: relative;
+    width: min(560px, 94vw);
+    max-height: 88vh;
+    overflow-y: auto;
+    border-radius: 30px;
+    background: linear-gradient(160deg, #ffffff, #ffe4ef);
+    box-shadow: 0 24px 60px rgba(74, 74, 74, 0.15);
+    border: 3px solid rgba(255, 180, 120, 0.55);
+    outline: 2px dashed rgba(255, 200, 160, 0.6);
+    outline-offset: 6px;
+    font-family: var(--font-body);
+    text-align: center;
+    padding: 34px 30px 30px;
+    animation: popIn 0.65s ease both;
+    scrollbar-width: thin;
+}
+
+.gift-title {
+    font-family: var(--font-display);
+    color: var(--pink-dark);
+    font-size: clamp(1.5rem, 4vw, 2.2rem);
+    margin-bottom: 10px;
+    text-shadow: 0 0 14px rgba(255, 122, 162, 0.3);
+    animation: titleShine 3s ease-in-out infinite;
+}
+
+.gift-sub {
+    color: var(--text-color);
+    line-height: 1.7;
+    font-size: 0.95rem;
+    margin: 0 auto 12px;
+    max-width: 38ch;
+}
+
+/* hiasan pojok kartu kado */
+.gift-deco {
+    position: absolute;
+    font-size: 30px;
+    opacity: 0.9;
+    pointer-events: none;
+    animation: cardDecoBob 3s ease-in-out infinite;
+}
+
+.gift-deco.d1 { top: -16px; right: -12px; font-size: 36px; }
+.gift-deco.d2 { bottom: -14px; left: -12px; font-size: 28px; animation-delay: 1.2s; }
+
+/* --- ember/vas berisi bunga mawar --- */
+.flower-bucket {
+    position: relative;
+    width: 230px;
+    height: 190px;
+    margin: 4px auto 10px;
+}
+
+.flower-stem {
+    position: absolute;
+    top: 0;
+    width: 26px;
+    text-align: center;
+    font-size: 34px;
+    filter: drop-shadow(0 6px 8px rgba(0, 0, 0, 0.12));
+    animation: flowerBob 3s ease-in-out infinite;
+}
+
+.flower-stem::after {
+    content: "";
+    display: block;
+    width: 3px;
+    height: 92px;
+    margin: -4px auto 0;
+    background: linear-gradient(#6fbf6f, #7cce7c);
+    border-radius: 2px;
+}
+
+.flower-stem.s1 { left: 30px; }
+.flower-stem.s2 { animation-delay: 0.5s; }
+.flower-stem.s3 { left: 162px; animation-delay: 1s; }
+
+.bucket {
+    position: absolute;
+    bottom: 0;
+    left: 50%;
+    transform: translateX(-50%);
+    width: 132px;
+    height: 88px;
+    background: linear-gradient(180deg, #ffffff, #ffd9e6);
+    border: 2.5px solid #ff8fb2;
+    border-radius: 6px 6px 42px 42px;
+    box-shadow:
+        inset 0 -14px 0 rgba(255, 120, 165, 0.18),
+        0 12px 20px rgba(0, 0, 0, 0.12);
+}
+
+.bucket-highlight {
+    position: absolute;
+    bottom: 20px;
+    left: 50%;
+    transform: translateX(-50%);
+    width: 96px;
+    height: 6px;
+    background: rgba(255, 255, 255, 0.9);
+    border-radius: 999px;
+    opacity: 0.9;
+}
+
+@keyframes flowerBob {
+    0%, 100% { transform: translateY(0) rotate(-6deg); }
+    50%      { transform: translateY(-7px) rotate(6deg); }
+}
+
+/* --- galeri foto ala polaroid --- */
+.photo-wall {
+    display: grid;
+    grid-template-columns: repeat(3, 1fr);
+    gap: 14px;
+    margin-top: 8px;
+    width: 100%;
+}
+
+.photo {
+    margin: 0;
+    padding: 6px 6px 8px;
+    background: #fff;
+    border-radius: 16px;
+    box-shadow: 0 10px 20px rgba(0, 0, 0, 0.12);
+}
+
+.photo-img {
+    position: relative;
+    aspect-ratio: 3 / 3.1;
+    overflow: hidden;
+    border-radius: 12px;
+    background: radial-gradient(circle at 50% 30%, #fff, #ffe0ed);
+}
+
+.photo-img img {
+    display: block;
+    width: 100%;
+    height: 100%;
+    object-fit: cover;
+}
+
+
+.photo-cap {
+    display: block;
+    text-align: center;
+    font-size: 0.72rem;
+    color: #b48497;
+    padding: 6px 2px 0;
+    font-family: var(--font-body);
+}
+
+.gift-card .replay-btn {
+    margin-top: 26px;
+}
+
+/* ...di layar kecil, galeri jadi 2 kolom */
+@media (max-width: 520px) {
+    .photo-wall {
+        grid-template-columns: repeat(2, 1fr);
+    }
+}
+
+
+/* ==================================================
+   PAGE 4 — BUKET BUNGA LEBIH INDAH + HIASAN EKSTRA
+================================================== */
+
+/* kartu kado di atas kelopak jatuh */
+.gift-card {
+    z-index: 4;
+}
+
+/* bunga di 4 sudut kartu */
+.gift-deco.d3 { bottom: -16px; right: -8px;  font-size: 30px; animation-delay: 0.6s; }
+.gift-deco.d4 { top: -14px;    left: -10px;  font-size: 28px; animation-delay: 1.6s; }
+
+/* kilau di kartu kado */
+.gift-sparkle {
+    position: absolute;
+    font-size: 18px;
+    color: #ff9ecb;
+    pointer-events: none;
+    animation: sparkleTwinkle 2.4s ease-in-out infinite;
+}
+
+.gift-sparkle.sp1 { top: 22%; left: 4%; }
+.gift-sparkle.sp2 { top: 70%; right: 3%; animation-delay: 1.1s; }
+.gift-sparkle.sp3 { top: 42%; right: 5%; animation-delay: 1.7s; }
+
+/* kupu-kupu yang terbang pelan di kartu */
+.gift-butterfly {
+    position: absolute;
+    top: 13%;
+    right: 6%;
+    font-size: 24px;
+    pointer-events: none;
+    animation: butterflyFly 6s ease-in-out infinite;
+}
+
+@keyframes butterflyFly {
+    0%, 100% { transform: translate(0, 0) rotate(-8deg); }
+    25%      { transform: translate(-14px, -12px) rotate(9deg); }
+    50%      { transform: translate(6px, -24px) rotate(-6deg); }
+    75%      { transform: translate(16px, -8px) rotate(11deg); }
+}
+
+/* pita hadiah kecil di bawah subjudul */
+.gift-ribbon {
+    display: block;
+    font-size: 26px;
+    line-height: 1;
+    margin: 2px 0 6px;
+    animation: giftLabelPop 2.6s ease-in-out infinite;
+}
+
+/* --- buket: lebih tinggi, lebih penuh --- */
+.flower-bucket {
+    width: 280px;
+    height: 210px;
+    margin: 6px auto 14px;
+}
+
+/* cahaya lembut di belakang buket */
+.bouquet-glow {
+    position: absolute;
+    left: 50%;
+    bottom: 22px;
+    width: 250px;
+    height: 250px;
+    border-radius: 50%;
+    background: radial-gradient(
+        circle,
+        rgba(255, 214, 231, 0.95) 0%,
+        rgba(255, 236, 244, 0.5) 46%,
+        transparent 72%
+    );
+    animation: bouquetGlowPulse 4s ease-in-out infinite;
+}
+
+@keyframes bouquetGlowPulse {
+    0%, 100% { transform: translateX(-50%) scale(0.94); opacity: 0.55; }
+    50%      { transform: translateX(-50%) scale(1.06); opacity: 0.9; }
+}
+
+/* tangkai bunga: ukuran kuntum + panjang tangkai diatur lewat variabel */
+.flower-stem {
+    z-index: 3;
+    font-size: var(--bloom, 34px);
+}
+
+.flower-stem::after {
+    height: var(--stem, 92px);
+}
+
+.flower-stem.s1 { left: 54px;  top: 8px;   --bloom: 28px; --stem: 96px; animation-delay: 0.2s; }
+.flower-stem.s2 { left: 84px;  top: 0;     --bloom: 34px; --stem: 96px; animation-delay: 0.7s; }
+.flower-stem.s3 { left: 114px; top: -16px; --bloom: 44px; --stem: 98px; animation-delay: 0s; z-index: 3; }
+.flower-stem.s4 { left: 140px; top: -16px; --bloom: 44px; --stem: 98px; animation-delay: 1s; z-index: 3; }
+.flower-stem.s5 { left: 170px; top: 0;     --bloom: 34px; --stem: 96px; animation-delay: 0.4s; }
+.flower-stem.s6 { left: 200px; top: 8px;   --bloom: 28px; --stem: 96px; animation-delay: 1.3s; }
+.flower-stem.s7 { left: 127px; top: 18px;  --bloom: 18px; --stem: 96px; animation-delay: 0.9s; z-index: 6; }
+
+/* dedaunan */
+.flower-leaf {
+    position: absolute;
+    font-size: 24px;
+    z-index: 2;
+    pointer-events: none;
+    filter: drop-shadow(0 4px 6px rgba(0, 0, 0, 0.1));
+    animation: leafSway 4s ease-in-out infinite;
+}
+
+.flower-leaf.l1 { left: 60px;  top: 30px; transform: rotate(-40deg); }
+.flower-leaf.l2 { left: 176px; top: 26px; transform: rotate(38deg); animation-delay: 1.2s; }
+.flower-leaf.l3 { left: 112px; top: 46px; transform: rotate(-12deg); font-size: 20px; animation-delay: 0.6s; }
+.flower-leaf.l4 { left: 84px;  top: 30px; transform: rotate(-24deg); font-size: 18px; animation-delay: 0.4s; }
+.flower-leaf.l5 { left: 136px; top: 34px; transform: rotate(22deg);  font-size: 18px; animation-delay: 1.3s; }
+.flower-leaf.l6 { left: 106px; top: 52px; transform: rotate(-6deg);  font-size: 22px; animation-delay: 0.8s; }
+
+@keyframes leafSway {
+    0%, 100% { filter: drop-shadow(0 4px 6px rgba(0, 0, 0, 0.1)); }
+    50%      { filter: drop-shadow(0 4px 10px rgba(120, 200, 120, 0.45)); }
+}
+
+/* kilau di sekitar buket */
+.bouquet-sparkle {
+    position: absolute;
+    font-size: 18px;
+    color: #ffb3d0;
+    z-index: 7;
+    pointer-events: none;
+    animation: sparkleTwinkle 2.6s ease-in-out infinite;
+}
+
+.bouquet-sparkle.g1 { left: 30px; top: 46px; }
+.bouquet-sparkle.g2 { right: 26px; top: 38px; animation-delay: 0.9s; }
+.bouquet-sparkle.g3 { left: 44%;  top: -4px;  animation-delay: 1.6s; }
+
+/* pita pengikat buket */
+.bouquet-ribbon {
+    position: absolute;
+    left: 50%;
+    bottom: 60px;
+    transform: translateX(-50%);
+    font-size: 34px;
+    z-index: 8;
+    pointer-events: none;
+    animation: ribbonBob 3s ease-in-out infinite;
+}
+
+@keyframes ribbonBob {
+    0%, 100% { transform: translateX(-50%) scale(1) rotate(-6deg); }
+    50%      { transform: translateX(-50%) scale(1.1) rotate(6deg); }
+}
+
+/* --- kelopak bunga jatuh --- */
+.petals {
+    position: absolute;
+    inset: 0;
+    overflow: hidden;
+    pointer-events: none;
+    z-index: 3;
+}
+
+.petal {
+    position: absolute;
+    top: -10%;
+    opacity: 0.85;
+    filter: drop-shadow(0 4px 6px rgba(0, 0, 0, 0.08));
+    animation-name: petalFall;
+    animation-timing-function: linear;
+    animation-iteration-count: infinite;
+}
+
+@keyframes petalFall {
+    0%   { transform: translateY(-12vh) rotate(0deg);   opacity: 0; }
+    12%  { opacity: 0.9; }
+    100% { transform: translateY(108vh) rotate(340deg); opacity: 0.15; }
+}
+
+/* di layar kecil, buketnya dikecilkan biar tetap muat */
+@media (max-width: 460px) {
+    .flower-bucket {
+        transform: scale(0.86);
+        transform-origin: center bottom;
+        margin-bottom: 0;
+    }
+
+    .gift-deco.d3,
+    .gift-deco.d4 {
+        font-size: 24px;
+    }
+}
+
+
+/* ==================================================
+   PAGE 3 — TOMBOL 🎁 MENCOLOK (BIAR DIPERHATIKAN)
+================================================== */
+
+.gift {
+    font-size: 66px;
+    filter:
+        drop-shadow(0 12px 22px rgba(0, 0, 0, 0.28))
+        drop-shadow(0 0 14px rgba(255, 190, 90, 0.95))
+        drop-shadow(0 0 34px rgba(255, 220, 130, 0.8));
+}
+
+.gift::before {
+    content: "";
+    position: absolute;
+    left: 50%;
+    top: 50%;
+    width: 135px;
+    height: 135px;
+    transform: translate(-50%, -50%);
+    border-radius: 50%;
+    background: radial-gradient(
+        circle,
+        rgba(255, 205, 110, 0.95) 0%,
+        rgba(255, 122, 162, 0.4) 46%,
+        transparent 70%
+    );
+    z-index: -1;
+    pointer-events: none;
+    animation: giftHalo 1.7s ease-in-out infinite;
+}
+
+@keyframes giftHalo {
+    0%, 100% { transform: translate(-50%, -50%) scale(0.8); opacity: 0.55; }
+    50%      { transform: translate(-50%, -50%) scale(1.3); opacity: 1; }
+}
+
+.gift-hint {
+    color: #ff2d7a;
+    font-weight: 800;
+    text-shadow:
+        0 0 6px rgba(255, 255, 255, 0.95),
+        0 2px 10px rgba(255, 90, 150, 0.5);
+}
+
+
+/* ==================================================
+   PAGE 4 — BUKET LEBIH PENUH + VAS LEBIH CANTIK
+================================================== */
+
+/* tandan belakang: lebih redup biar nambah kesan tebal */
+.flower-stem.s8  { left: 46px;  top: -2px;  --bloom: 26px; --stem: 98px;  z-index: 1; animation-delay: 0.3s; filter: drop-shadow(0 6px 8px rgba(0, 0, 0, 0.1)) saturate(0.8); }
+.flower-stem.s9  { left: 208px; top: -2px;  --bloom: 26px; --stem: 98px;  z-index: 1; animation-delay: 1.1s; filter: drop-shadow(0 6px 8px rgba(0, 0, 0, 0.1)) saturate(0.8); }
+
+/* tangkai tambahan → buket makin padat & rapi seperti buket sungguhan (3 lapis) */
+.flower-stem.s10 { left: 20px;  top: 6px;   --bloom: 22px; --stem: 90px;  z-index: 1; animation-delay: 0.5s; filter: drop-shadow(0 6px 8px rgba(0,0,0,0.1)) saturate(0.8); }
+.flower-stem.s11 { left: 234px; top: 6px;   --bloom: 22px; --stem: 90px;  z-index: 1; animation-delay: 0.9s; filter: drop-shadow(0 6px 8px rgba(0,0,0,0.1)) saturate(0.8); }
+.flower-stem.s12 { left: 76px;  top: -6px;  --bloom: 30px; --stem: 98px;  z-index: 2; animation-delay: 1.4s; }
+.flower-stem.s13 { left: 178px; top: -6px;  --bloom: 30px; --stem: 98px;  z-index: 2; animation-delay: 0.2s; }
+.flower-stem.s14 { left: 127px; top: -22px; --bloom: 52px; --stem: 100px; z-index: 4; animation-delay: 0.6s; }
+.flower-stem.s15 { left: 100px; top: -12px; --bloom: 36px; --stem: 98px;  z-index: 5; animation-delay: 1.1s; }
+.flower-stem.s16 { left: 154px; top: -12px; --bloom: 36px; --stem: 98px;  z-index: 5; animation-delay: 0.3s; }
+
+/* kilau + hati kecil di antara bunga */
+.bouquet-sparkle.g4 { right: 40px; bottom: 8px; font-size: 20px; animation-delay: 0.4s; }
+.bouquet-sparkle.g5 { left: 46%;  top: 8px;    font-size: 16px; animation-delay: 2s; }
+
+/* bayangan lembut di bawah vas supaya nggak "ngambang" */
+.bouquet-shadow {
+    position: absolute;
+    left: 50%;
+    bottom: -6px;
+    transform: translateX(-50%);
+    width: 190px;
+    height: 14px;
+    border-radius: 50%;
+    background: radial-gradient(ellipse at 50% 50%, rgba(190, 70, 120, 0.35), transparent 70%);
+    animation: shadowPulse 4s ease-in-out infinite;
+}
+
+@keyframes shadowPulse {
+    0%, 100% { transform: translateX(-50%) scaleX(1);    opacity: 0.5; }
+    50%      { transform: translateX(-50%) scaleX(1.15); opacity: 0.8; }
+}
+
+/* hati kecil berdetak di badan vas */
+.bucket-heart {
+    position: absolute;
+    left: 50%;
+    top: 170px;
+    transform: translateX(-50%);
+    font-size: 20px;
+    z-index: 2;
+    pointer-events: none;
+    animation: heartBeat 1.6s ease-in-out infinite;
+}
+
+@keyframes heartBeat {
+    0%, 100% { transform: translateX(-50%) scale(1); }
+    50%      { transform: translateX(-50%) scale(1.25); }
+}
+
+/* vas/ember makin cantik: corak halus + seperti ember sungguhan (mulut terbuka, ada air) */
+.bucket {
+    position: absolute;
+    bottom: 0;
+    left: 50%;
+    transform: translateX(-50%);
+    width: 150px;
+    height: 92px;
+    background:
+        repeating-linear-gradient(90deg,
+            rgba(255, 255, 255, 0.16) 0 9px,
+            rgba(255, 255, 255, 0) 9px 18px),
+        radial-gradient(circle at 28% 16%, rgba(255, 255, 255, 0.95), rgba(255, 255, 255, 0) 42%),
+        linear-gradient(180deg, #ffe9f2, #ffd0e2 55%, #ffafcd);
+    border: 2.5px solid #ff7fa8;
+    border-radius: 12px 12px 46px 46px;
+    box-shadow:
+        inset 0 -12px 0 rgba(255, 110, 160, 0.22),
+        inset 0 4px 6px rgba(255, 255, 255, 0.85),
+        0 14px 22px rgba(0, 0, 0, 0.14);
+}
+
+/* mulut ember yang terbuka (bibir atasan sedikit lebih lebar) */
+.bucket::before {
+    content: "";
+    position: absolute;
+    top: -9px;
+    left: -7px;
+    right: -7px;
+    height: 18px;
+    border-radius: 50%/100% 100% 0 0;
+    background: linear-gradient(180deg, #ffd6e6, #ff9fc4);
+    border: 2.5px solid #ff7fa8;
+    box-shadow: inset 0 2px 3px rgba(255, 255, 255, 0.75);
+    z-index: 1;
+}
+
+/* permukaan air di dalam ember (bunga berdiri di air) */
+.bucket::after {
+    content: "";
+    position: absolute;
+    top: 4px;
+    left: 10px;
+    right: 10px;
+    height: 7px;
+    border-radius: 0 0 50% 50%;
+    background: linear-gradient(180deg, rgba(150, 205, 255, 0.7), rgba(130, 190, 255, 0.35));
+    box-shadow: 0 2px 0 rgba(120, 180, 255, 0.5);
+    z-index: 2;
+}
+
+.bucket-highlight {
+    width: 106px;
+    height: 7px;
+    bottom: 24px;
+    background: linear-gradient(
+        90deg,
+        rgba(255, 255, 255, 0),
+        rgba(255, 255, 255, 0.95),
+        rgba(255, 255, 255, 0)
+    );
+    opacity: 0.95;
+}
+
+/* panah kecil penunjuk 🎁 (di atas kotak hadiah, menunjuk ke kotak bukan ke label) */
+.gift-arrow {
+    position: absolute;
+    left: 50%;
+    top: 74%;
+    transform: translateX(-50%);
+    font-size: 26px;
+    z-index: 4;
+    pointer-events: none;
+    animation: arrowNudge 1.1s ease-in-out infinite;
+}
+
+@keyframes arrowNudge {
+    0%, 100% { transform: translate(-50%, -7px) rotate(-7deg); opacity: 0.5; }
+    50%      { transform: translate(-50%, 9px)   rotate(7deg);  opacity: 1; }
+}
+
+/* ==================================================
+   PAGE 4 — ZOOM SAAT HOVER + LIGHTBOX FOTO ARA
+================================================== */
+
+/* biar isi halaman tak ikut scroll saat lightbox terbuka */
+body.lb-open {
+    overflow: hidden;
+}
+
+/* kartu polaroid sedikit terangkat saat di-hover */
+.photo {
+    transition: transform 0.35s ease, box-shadow 0.35s ease;
+}
+.photo:hover {
+    transform: translateY(-6px) rotate(-0.5deg);
+    box-shadow: 0 16px 34px rgba(255, 105, 160, 0.28);
+}
+
+/* foto membesar lembut saat kursor mendekat */
+.photo-img {
+    cursor: zoom-in;
+}
+.photo-img img {
+    transition: transform 0.55s cubic-bezier(0.22, 1, 0.36, 1), filter 0.55s ease;
+}
+.photo-img:hover img {
+    transform: scale(1.14) rotate(1deg);
+    filter: brightness(1.06) saturate(1.1);
+}
+
+/* ikon kaca pembesar kecil muncul saat hover — isyarat "bisa diklik" */
+.photo-img::after {
+    content: "🔍";
+    position: absolute;
+    right: 10px;
+    bottom: 10px;
+    font-size: 15px;
+    background: rgba(255, 255, 255, 0.88);
+    border-radius: 999px;
+    padding: 4px 7px;
+    box-shadow: 0 4px 12px rgba(0, 0, 0, 0.2);
+    opacity: 0;
+    transform: translateY(6px) scale(0.8);
+    transition: opacity 0.3s ease, transform 0.3s ease;
+    pointer-events: none;
+}
+.photo-img:hover::after {
+    opacity: 1;
+    transform: translateY(0) scale(1);
+}
+
+/* ---- LIGHTBOX ---- */
+.lightbox {
+    position: fixed;
+    inset: 0;
+    z-index: 9999;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    background: rgba(40, 10, 30, 0.82);
+    backdrop-filter: blur(8px);
+    -webkit-backdrop-filter: blur(8px);
+    opacity: 0;
+    visibility: hidden;
+    transition: opacity 0.35s ease, visibility 0.35s ease;
+}
+.lightbox.open {
+    opacity: 1;
+    visibility: visible;
+}
+
+.lb-frame {
+    margin: 0;
+    padding: 14px 14px 16px;
+    background: linear-gradient(145deg, #fff6fa, #fff);
+    border-radius: 22px;
+    border: 3px solid #ffd1e3;
+    box-shadow: 0 24px 60px rgba(0, 0, 0, 0.5), 0 0 0 6px rgba(255, 140, 185, 0.25),
+                0 0 40px rgba(255, 120, 170, 0.45);
+    max-width: min(88vw, 560px);
+    position: relative;
+    transform: scale(0.88);
+    transition: transform 0.35s cubic-bezier(0.22, 1, 0.36, 1);
+}
+.lightbox.open .lb-frame {
+    transform: scale(1);
+    animation: lbBreath 3.2s ease-in-out infinite;
+}
+
+@keyframes lbBreath {
+    0%, 100% { transform: scale(1) translateY(0); }
+    50%      { transform: scale(1.012) translateY(-5px); }
+}
+#lbImg {
+    display: block;
+    width: min(84vw, 540px);
+    max-height: 70vh;
+    object-fit: contain;
+    border-radius: 12px;
+    background: #fff0f6;
+}
+.lb-cap {
+    display: block;
+    text-align: center;
+    margin-top: 12px;
+    font-family: var(--font-body);
+    font-style: italic;
+    font-weight: 600;
+    color: #a04a76;
+    font-size: 1rem;
+}
+
+.lb-close {
+    position: absolute;
+    top: 18px;
+    right: 22px;
+    width: 46px;
+    height: 46px;
+    border-radius: 50%;
+    border: none;
+    background: #ff5c8a;
+    color: #fff;
+    font-size: 26px;
+    line-height: 1;
+    cursor: pointer;
+    box-shadow: 0 6px 18px rgba(255, 60, 120, 0.5);
+    z-index: 2;
+    transition: transform 0.2s ease, background 0.2s ease;
+}
+.lb-close:hover {
+    transform: scale(1.12) rotate(90deg);
+    background: #ff3d76;
+}
+
+.lb-nav {
+    position: absolute;
+    top: 50%;
+    transform: translateY(-50%);
+    width: 52px;
+    height: 52px;
+    border-radius: 50%;
+    border: none;
+    background: rgba(255, 255, 255, 0.9);
+    color: #c2346e;
+    font-size: 30px;
+    line-height: 1;
+    cursor: pointer;
+    box-shadow: 0 8px 24px rgba(0, 0, 0, 0.3);
+    z-index: 2;
+    transition: transform 0.2s ease, background 0.2s ease;
+}
+.lb-prev { left: 16px; }
+.lb-next { right: 16px; }
+.lb-nav:hover {
+    transform: translateY(-50%) scale(1.12);
+    background: #fff;
+}
+
+.lb-counter {
+    position: absolute;
+    bottom: 20px;
+    left: 50%;
+    transform: translateX(-50%);
+    color: #ffe3ee;
+    font-family: var(--font-body);
+    font-weight: 700;
+    font-size: 0.95rem;
+    letter-spacing: 1px;
+    background: rgba(120, 20, 60, 0.5);
+    padding: 6px 16px;
+    border-radius: 999px;
+    white-space: nowrap;
+}
+
+/* hiasan kecil yang mengambang di dalam lightbox */
+.lb-sparkle, .lb-heart {
+    position: absolute;
+    font-size: 30px;
+    pointer-events: none;
+    z-index: 1;
+    animation: lbFloat 4s ease-in-out infinite;
+}
+.lb-sparkle.ls1 { top: 16%; left: 12%; font-size: 26px; animation-delay: 0.3s; }
+.lb-sparkle.ls2 { top: 20%; right: 14%; animation-delay: 1.1s; }
+.lb-heart { bottom: 18%; left: 18%; font-size: 34px; animation-delay: 0.7s; }
+
+@keyframes lbFloat {
+    0%, 100% { transform: translateY(0) rotate(-8deg); opacity: 0.55; }
+    50%      { transform: translateY(-16px) rotate(10deg); opacity: 1; }
+}
+
+@media (max-width: 520px) {
+    .lb-prev { left: 8px; }
+    .lb-next { right: 8px; }
+    .lb-nav  { width: 42px; height: 42px; font-size: 22px; }
+    #lbImg  { width: 80vw; }
+}
+

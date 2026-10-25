@@ -1,0 +1,390 @@
+
+<!DOCTYPE html>
+<html lang="id">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+
+    <title>Spesial Buat Kamu</title>
+
+    <link rel="preconnect" href="https://fonts.googleapis.com">
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+    <link
+        href="https://fonts.googleapis.com/css2?family=Baloo+2:wght@400;600;700;800&family=Quicksand:wght@400;500;600;700&display=swap"
+        rel="stylesheet"
+    >
+
+    <link rel="stylesheet" href="style.css">
+</head>
+
+<body>
+
+    <!-- Bingkai dekoratif sekeliling halaman -->
+    <div class="page-frame" aria-hidden="true"></div>
+
+    <!-- Hiasan mengambang di tepi background biar tak kosong -->
+    <div class="bg-deco" aria-hidden="true">
+        <span class="bd bd1">🌸</span>
+        <span class="bd bd2">💛</span>
+        <span class="bd bd3">✨</span>
+        <span class="bd bd4">🎀</span>
+        <span class="bd bd5">🌷</span>
+        <span class="bd bd6">💖</span>
+        <span class="bd bd7">🌹</span>
+        <span class="bd bd8">🦋</span>
+        <span class="bd bd9">🍃</span>
+        <span class="bd bd10">🌺</span>
+    </div>
+
+    <!-- Background particles -->
+    <div id="particles"></div>
+
+    <!-- Objek camber alarg -->
+    <div class="ambient" aria-hidden="true"></div>
+
+    <!-- Musik latar -->
+    <audio id="bgMusic" src="music.mp3" loop preload="auto"></audio>
+
+    <!-- HALAMAN AMPL0P -->
+    <main id="stageEnvelope" class="stage active">
+
+        <!-- Garlands de luces -->
+        <div id="bunting" aria-hidden="true"></div>
+
+        <!-- Balon naik-naik -->
+        <div class="balloons" aria-hidden="true">
+            <span class="balloon b1">🎈</span>
+            <span class="balloon b2">🎈</span>
+            <span class="balloon b3">🎈</span>
+        </div>
+
+        <div
+            class="envelope-wrapper"
+            id="openEnvelope"
+            role="button"
+            tabindex="0"
+        >
+
+            <div class="envelope-text">
+                Klik untuk membuka 💌
+            </div>
+
+            <div class="envelope">
+
+                <div class="envelope-flap"></div>
+
+                <div class="envelope-body"></div>
+
+                <div class="heart">
+                    ♥
+                </div>
+
+                <div class="wax-seal" aria-hidden="true">💌</div>
+
+            </div>
+
+        </div>
+
+    </main>
+
+
+    <!-- HALAMAN PESAN -->
+    <main id="stageLetter" class="stage">
+
+        <section class="letter-card">
+
+            <span class="card-flower tl" aria-hidden="true">🌷</span>
+            <span class="card-flower br" aria-hidden="true">🌷</span>
+
+            <button
+                id="closeLetter"
+                class="close-btn"
+                aria-label="Tutup"
+            >
+                ×
+            </button>
+
+            <div class="letter-icon">
+                💗
+            </div>
+
+            <h1>
+                Special Letter
+            </h1>
+
+            <p
+                id="typedText"
+                class="message"
+            ></p>
+
+            <button
+                id="replay"
+                class="replay-btn"
+            >
+                Buka Lagi 💌
+            </button>
+
+            </section>
+
+    </main>
+
+
+    <!-- HALAMAN BONEKA (SURPRISE) -->
+    <main id="stageSurprise" class="stage">
+
+        <section class="surprise-card">
+
+            <span class="card-flower tl" aria-hidden="true">🌷</span>
+            <span class="card-flower br" aria-hidden="true">🌷</span>
+            <span class="card-sparkle s1" aria-hidden="true">✧</span>
+            <span class="card-sparkle s2" aria-hidden="true">✧</span>
+            <span class="card-deco d1" aria-hidden="true">🎀</span>
+            <span class="card-deco d2" aria-hidden="true">🌷</span>
+
+            <div class="surprise" aria-hidden="true">
+
+                <div class="surprise-heart h1">💗</div>
+                <div class="surprise-heart h2">💖</div>
+                <div class="surprise-heart h3">🌸</div>
+                <div class="surprise-heart h4">💘</div>
+                <div class="surprise-heart h5">💛</div>
+                <div class="surprise-heart h6">🧡</div>
+                <div class="surprise-star s1">⭐</div>
+                <div class="surprise-star s2">✧</div>
+                <div class="surprise-star s3">✨</div>
+
+                <div class="boneka-wrap">
+
+                    <span class="halo"></span>
+
+                    <span class="boneka b2">🧸</span>
+
+                    <span class="boneka b1">
+                        <span class="bow">🎀</span>
+                        🧸
+                    </span>
+
+                    <span class="boneka b3">🧸</span>
+
+                    <span
+                        id="openGift"
+                        class="gift"
+                        role="button"
+                        tabindex="0"
+                        title="Buka kejutan buat Araa 💝"
+                    >🎁</span>
+
+                    <span class="gift-hint" aria-hidden="true">Klik buat buka 💝</span>
+
+                    <span class="gift-arrow" aria-hidden="true">👇</span>
+
+                </div>
+
+            </div>
+
+            <div class="gift-label" aria-hidden="true">
+                🎁 A Special Gift 🎁
+            </div>
+
+            <h2 class="surprise-title">
+                Sepucuk Kejutan buat Araa 🎀
+            </h2>
+
+            <p class="message">
+                🎁 Tadaaaa, Clara!! 🧸💗
+
+                Saya benar-benar menyesal. Maaf atas segala yang telah terjadi dan segala yang telah membuatmu terluka. Saya menyesalnya dari dalam hati, sungguh.
+
+                Aku hanya berharap yang terbaik bagimu, Clara. Semoga kamu bahagia dengan pacar barumu, dan semoga semua hal baik selalu menyertai kalian berdua.
+
+                Jaga dirimu, ya. 🌷
+
+                —— seseorang yang benar-benar menyesal ♡
+            </p>
+
+            <button
+                id="back"
+                class="replay-btn"
+            >
+                Balik 💗
+            </button>
+
+            </section>
+
+    </main>
+
+
+    <!-- HALAMAN KADO (BUNGA + FOTO ARA) -->
+    <main id="stageGift" class="stage">
+
+        <!-- kelopak bunga jatuh di halaman ini -->
+        <div class="petals" aria-hidden="true"></div>
+
+        <section class="gift-card">
+
+            <!-- bunga di tiap sudut kartu -->
+            <span class="gift-deco d1" aria-hidden="true">🌹</span>
+            <span class="gift-deco d2" aria-hidden="true">🌷</span>
+            <span class="gift-deco d3" aria-hidden="true">🌸</span>
+            <span class="gift-deco d4" aria-hidden="true">🌺</span>
+
+            <!-- kilau + kupu-kupu penghias -->
+            <span class="gift-sparkle sp1" aria-hidden="true">✨</span>
+            <span class="gift-sparkle sp2" aria-hidden="true">✨</span>
+            <span class="gift-sparkle sp3" aria-hidden="true">✦</span>
+            <span class="gift-butterfly" aria-hidden="true">🦋</span>
+
+            <h2 class="gift-title">
+                Sejuta Bunga buat Araa 🌹💐
+            </h2>
+
+            <p class="gift-sub">
+                Gak cuma boneka ya, ini juga sebuket bunga mawar
+                plus beberapa momen buat ngangenin senyummu. 💗
+            </p>
+
+            <div class="gift-ribbon" aria-hidden="true">🎀</div>
+
+            <div class="flower-bucket" aria-hidden="true">
+
+                <span class="bouquet-glow"></span>
+
+                <!-- kuntum bunga: 7 tangkai, ukuran & warna beda -->
+                <span class="flower-stem s1">🌷</span>
+                <span class="flower-stem s2">🌹</span>
+                <span class="flower-stem s3">🌹</span>
+                <span class="flower-stem s4">🌷</span>
+                <span class="flower-stem s5">🌹</span>
+                <span class="flower-stem s6">🌺</span>
+                <span class="flower-stem s7">🌸</span>
+                <span class="flower-stem s8">🌹</span>
+                <span class="flower-stem s9">🌷</span>
+                <!-- tangkai tambahan supaya buket makin penuh -->
+                <span class="flower-stem s10">🌷</span>
+                <span class="flower-stem s11">🌹</span>
+                <span class="flower-stem s12">🌸</span>
+                <span class="flower-stem s13">🌺</span>
+                <span class="flower-stem s14">🌹</span>
+                <span class="flower-stem s15">🌷</span>
+                <span class="flower-stem s16">🌹</span>
+
+                <!-- dedaunan di sela-sela bunga -->
+                <span class="flower-leaf l1">🍃</span>
+                <span class="flower-leaf l2">🍃</span>
+                <span class="flower-leaf l3">🌿</span>
+                <span class="flower-leaf l4">🍃</span>
+                <span class="flower-leaf l5">🌿</span>
+                <span class="flower-leaf l6">🌿</span>
+
+                <!-- kilau di sekitar buket -->
+                <span class="bouquet-sparkle g1">✨</span>
+                <span class="bouquet-sparkle g2">✨</span>
+                <span class="bouquet-sparkle g3">✧</span>
+                <span class="bouquet-sparkle g4">💗</span>
+                <span class="bouquet-sparkle g5">💞</span>
+
+                <!-- pita pengikat buket -->
+                <span class="bouquet-ribbon">🎀</span>
+
+                <!-- bayangan + hati kecil di vas -->
+                <div class="bouquet-shadow"></div>
+                <span class="bucket-heart">💗</span>
+
+                <div class="bucket"></div>
+                <div class="bucket-highlight"></div>
+            </div>
+
+            <div class="photo-wall">
+
+                <figure class="photo p1">
+                    <div class="photo-img">
+                        <img src="photos/ara-1.jpg" alt="Ara saat video call" loading="lazy"
+                             onerror="this.style.display='none'">
+                    </div>
+                    <figcaption class="photo-cap">Manis banget, walau cuma lewat layar 💻</figcaption>
+                </figure>
+
+                <figure class="photo p2">
+                    <div class="photo-img">
+                        <img src="photos/ara-2.jpg" alt="Ara ngantuk di sofa biru" loading="lazy"
+                             onerror="this.style.display='none'">
+                    </div>
+                    <figcaption class="photo-cap">Ngantuk dikit, tapi tetap menggemaskan 😴</figcaption>
+                </figure>
+
+                <figure class="photo p3">
+                    <div class="photo-img">
+                        <img src="photos/ara-3.jpg" alt="Ara memeluk boneka Snoopy" loading="lazy"
+                             onerror="this.style.display='none'">
+                    </div>
+                    <figcaption class="photo-cap">Peluk Snoopy-nya, kangen pelukmu 🐶🤍</figcaption>
+                </figure>
+
+                <figure class="photo p4">
+                    <div class="photo-img">
+                        <img src="photos/ara-4.jpg" alt="Ara di padang rumput di bawah langit biru" loading="lazy"
+                             onerror="this.style.display='none'">
+                    </div>
+                    <figcaption class="photo-cap">Senyum manis di bawah langit biru 🏔️💙</figcaption>
+                </figure>
+
+                <figure class="photo p5">
+                    <div class="photo-img">
+                        <img src="photos/ara-5.jpg" alt="Ara cemberut manis sambil menyandar" loading="lazy"
+                             onerror="this.style.display='none'">
+                    </div>
+                    <figcaption class="photo-cap">Cemberut pun tetap cantik 🥰</figcaption>
+                </figure>
+
+                <figure class="photo p6">
+                    <div class="photo-img">
+                        <img src="photos/ara-6.jpg" alt="Ara foto OOTD di depan cermin" loading="lazy"
+                             onerror="this.style.display='none'">
+                    </div>
+                    <figcaption class="photo-cap">OOTD hari ini, secantik pemiliknya 📸</figcaption>
+                </figure>
+
+            </div>
+
+            <button
+                id="giftBack"
+                class="replay-btn"
+            >
+                Balik ke hadiah 🧸
+            </button>
+
+        </section>
+
+    </main>
+    <!-- LIGHTBOX FOTO ARA — zoom saat hover, klik untuk buka -->
+    <div id="lightbox" class="lightbox" role="dialog" aria-modal="true" aria-label="Galeri foto Ara">
+        <span class="lb-sparkle ls1" aria-hidden="true">✨</span>
+        <span class="lb-sparkle ls2" aria-hidden="true">🌸</span>
+        <span class="lb-heart" aria-hidden="true">💗</span>
+        <button id="lbClose" class="lb-close" aria-label="Tutup">×</button>
+        <button id="lbPrev" class="lb-nav lb-prev" aria-label="Foto sebelumnya">‹</button>
+        <button id="lbNext" class="lb-nav lb-next" aria-label="Foto berikutnya">›</button>
+        <figure class="lb-frame">
+            <img id="lbImg" src="" alt="">
+            <figcaption id="lbCap" class="lb-cap"></figcaption>
+        </figure>
+        <span class="lb-counter" id="lbCounter">1 / 6</span>
+    </div>
+
+
+
+
+    <!-- Tombol musik kecil di pojok -->
+    <button
+        id="musicToggle"
+        class="music-toggle"
+        aria-label="Putar atau jeda musik"
+        title="Putar musik"
+    >
+        🎵
+    </button>
+
+    <script src="script.js"></script>
+
+</body>
+</html>
