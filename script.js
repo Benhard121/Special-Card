@@ -1,8 +1,6 @@
 const message = `
 
-Haii Call,
-
-maaf.
+Haii Call, maaf yaa.
 
 ak benar-benar menyesal atas segala kesalahan ak. surat ini itu sebagai hadiah kecil untuk u call cuma sesuatu yang sederhana, karena kamu layak mendapatkannya.
 
