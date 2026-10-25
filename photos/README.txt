@@ -1,4 +1,4 @@
-Tempat foto Ara ada di sini! 📸
+Tempat foto Clara ada di sini! 📸
 
 STATUS: 6 foto sudah terpasang ✅
 (call1.jpg sampai call6.jpg)
@@ -13,7 +13,7 @@ CARA GANTI / TAMBAH FOTO:
    - call5.jpg
    - call6.jpg
 
-Foto otomatis tampil di Halaman 4 (Kado Bunga + Foto Ara).
+Foto otomatis tampil di Halaman 4 (Kado Bunga + Foto Clara).
 Ukuran bebas (tegak/landscape) — nanti otomatis dirapikan.
 
 Kalimat di bawah tiap foto bisa diubah di index.html

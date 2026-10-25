@@ -347,7 +347,7 @@ for (let i = 0; i < 26; i++) {
 
 
 /* ========================================
-   LIGHTBOX FOTO ARA (klik untuk perbesar)
+   LIGHTBOX FOTO CLARA (klik untuk perbesar)
 ======================================== */
 
 const lightbox =
