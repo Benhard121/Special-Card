@@ -1,14 +1,14 @@
 const message = `
 
-Halo Clara Callista,
+Haii Call,
 
-Maaf.
+maaf.
 
-Saya benar-benar menyesal atas segala kesalahan saya. Surat ini hadir sebagai hadiah kecil untukmu—cuma sesuatu yang sederhana, karena kamu layak mendapatkannya.
+ak benar-benar menyesal atas segala kesalahan ak. surat ini itu sebagai hadiah kecil untuk u call cuma sesuatu yang sederhana, karena kamu layak mendapatkannya.
 
-Semoga kamu selalu dalam keadaan baik.
+semoga kamu selalu dalam keadaan baik.
 
-Jaga dirimu, Clara. 💕`;
+God blees u, clara. `;
 
 
 const stageEnvelope =
